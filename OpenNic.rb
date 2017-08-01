@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 class Opennic
+	require 'uri'
+	require 'net/fping'
 	
 	def initialize
 		@urls = []
@@ -16,10 +18,20 @@ class Opennic
 				@head_ip.push(line.split("\n")[1])
 			end
 		end
-		
 	end
 	
-
+	private
+		def pingfn(host)
+			result = ""
+			#check if fping is installed
+			if File.exists(`which fping`.chomp)
+				result = %x{fping -q -p 20 -r 0 -c 25 #{host}}
+			else
+			#Fallback to normal ping
+				result = %x{ping -q -i 0.5 -c 10 #{host}}
+			end
+			result
+		end
 end
 
 

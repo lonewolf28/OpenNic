@@ -1,6 +1,9 @@
+#This file should go under /etc/systemd/system/foo.service
+#
+
 [Unit]
 Description=This script updates the resolvconf with dns server with good latency
-After=network.target
+After=network-online.target
 
 [Service]
 Type=oneshot

@@ -26,6 +26,8 @@ def write_ips
 	end
 	wh.close
 	wh2.close
+	#restart the network manager
+	system("systemctl restrat networking.service")
 end
 
 write_ips

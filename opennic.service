@@ -1,0 +1,11 @@
+[Unit]
+Description=This script updates the resolvconf with dns server with good latency
+After=network.target
+
+[Service]
+Type=oneshot
+Exec=/opt/OpenNic/OpenNic.rb
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
